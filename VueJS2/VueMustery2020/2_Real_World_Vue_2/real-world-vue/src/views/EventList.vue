@@ -1,7 +1,7 @@
 <template>
   <div>
-    <h1>Event Listing</h1>
-    <EventCard v-for="event in events" :key="event.id" :event="event"/>
+    <h1>Events for {{ userStore.user.name }}</h1>
+    <EventCard v-for="event in eventStore.events" :key="event.id" :event="event"/>
 
 <!--    Only show Prev link if not on first page-->
     <template v-if="page !== 1">
@@ -25,8 +25,8 @@ export default {
   },
   created() {
     this.perPage = 3
-
-    this.$store.dispatch('fetchEvents', {
+    // namespaced call
+    this.$store.dispatch('eventStore/fetchEvents', {
       eventsPerPage: this.perPage,
       currentPage: this.page })
   },
@@ -35,9 +35,9 @@ export default {
       return parseInt(this.$route.query.page) || 1
     },
     hasNextPage() {
-      return this.totalEvents > this.page * this.perPage
+      return this.eventStore.totalEvents > this.page * this.perPage
     },
-    ...mapState(['events', 'totalEvents'])
+    ...mapState(['userStore', 'eventStore'])
   }
 }
 </script>

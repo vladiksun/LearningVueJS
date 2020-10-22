@@ -170,6 +170,21 @@
       "date": "",
       "time": "",
       "attendees": []
+    },
+    {
+      "id": 727206,
+      "user": {
+        "id": "abs123",
+        "name": "Vlad B."
+      },
+      "category": "sustainability",
+      "organizer": "Vlad B.",
+      "title": "TEST1",
+      "description": "TEST1",
+      "location": "",
+      "date": "",
+      "time": "",
+      "attendees": []
     }
   ]
 }

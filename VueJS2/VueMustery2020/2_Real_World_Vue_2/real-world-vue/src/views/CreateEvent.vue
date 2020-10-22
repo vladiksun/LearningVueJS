@@ -68,7 +68,7 @@ export default {
   },
   methods: {
     createFreshEventObject() {
-      const user = this.$store.state.user
+      const user = this.$store.state.userStore.user
       const id = Math.floor(Math.random() * 1000000)
       return {
         id: id,
@@ -84,7 +84,8 @@ export default {
       }
     },
     createEvent() {
-      this.$store.dispatch('createEvent', this.event)
+      // namespaced call
+      this.$store.dispatch('eventStore/createEvent', this.event)
           .then(() => {
             // navigate to just created event
             this.$router.push({
@@ -100,7 +101,7 @@ export default {
   },
   computed: {
     ...mapGetters(['getEventByID']),
-    ...mapState(['user'])
+    ...mapState(['userStore'])
   }
 }
 </script>
