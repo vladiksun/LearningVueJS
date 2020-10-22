@@ -1,7 +1,8 @@
 <template>
   <div id="app">
     <NavBar></NavBar>
-    <router-view/>
+<!--              this key force component reload on URL change-->
+    <router-view :key="$route.fullPath"/>
   </div>
 </template>
 

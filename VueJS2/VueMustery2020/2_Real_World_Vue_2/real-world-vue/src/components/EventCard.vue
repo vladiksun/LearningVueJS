@@ -1,32 +1,22 @@
 <template>
-  <div class="event-card -shadow">
-    <router-link class="event-link" :to="{ name: 'event-show', params: { id: event.id } }">
+  <router-link class="event-link" :to="{ name: 'event-show', params: { id: event.id } }">
+    <div class="event-card -shadow">
+      <span v-if="!event.time">No time specifed</span>
+      <span v-else class="eyebrow">@{{ event.time }} on {{ event.date }}</span>
 
-      <span class="eyebrow">@{{ event.time }} on {{ event.date }}</span>
-      <h1 class="title">{{ event.title }}</h1>
-      <span>{{ event.attendees.length }} attending</span>
+      <h4 class="title">{{ event.title }}</h4>
+      <BaseIcon name="users">{{ event.attendees.length }} attending</BaseIcon>
+    </div>
+  </router-link>
 
-    </router-link>
-  </div>
 </template>
 
 <script>
 export default {
   name: "EventCard",
-  data() {
-    return {
-      event: {
-        id: 1,
-        title: 'Park Cleanup',
-        date: 'Tues Aug 19, 2020',
-        time: '6:00',
-        attendees: [
-          { id:'abc123', name: 'Vlad' },
-          { id:'qwe123', name: 'Peter' }
-        ]
-      }
-    }
-  },
+  props: {
+    event: Object
+  }
 }
 </script>
 
