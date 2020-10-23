@@ -11,4 +11,6 @@ npm install -g json-server
 
 json-server --watch db.json
 
+json-server -d 1500 db.json
+
 npm outdated

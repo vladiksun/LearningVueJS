@@ -32,14 +32,23 @@
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex'
+import NProgress from 'nprogress'
+import store from '@/store/store'
 
 export default {
-  props: {
-    event: {
-      type: Object,
-      required: true
-    }
-  }
+  props: ['id'],
+  computed: mapState({
+    event: state => state.eventStore.event
+  }),
+
+  created() {
+    // namespaced call
+    this.fetchEvent(this.id)
+  },
+
+  /*** Example of mapping namespaced actions, so we can call actions from lifecycle hooks ***/
+  methods: mapActions('eventStore', ['fetchEvent']),
 }
 </script>
 

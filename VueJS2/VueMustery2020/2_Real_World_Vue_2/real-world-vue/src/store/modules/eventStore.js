@@ -5,6 +5,7 @@ export const namespaced = true
 export const state = {
     events: [],
     totalEvents: 0,
+    perPage: 3,
     event: {}
 }
 
@@ -31,36 +32,59 @@ export const actions = {
         // Example how to call an action from another module (namespace),
         // null = payload,
         // root=true indicates to also look for an action at the root of our store
-        dispatch('moduleName/actionToCall', null, { root: true })
+        dispatch('moduleName/actionToCall', null, {root: true})
 
         return EventService.postEvent(event)
             .then(() => {
                 commit("ADD_EVENT", event)
+                const notification = {
+                    type: 'success',
+                    message: 'Your event has been created'
+                }
+                dispatch('notificationStore/add', notification, {root: true})
             }).catch(error => {
-                console.log('There was a problem saving your event to DB.', error.response)
+                const notification = {
+                    type: 'error',
+                    message: 'There was a problem saving your event to DB: ' + error.message
+                }
+                dispatch('notificationStore/add', notification, {root: true})
+                throw error
             })
     },
-    fetchEvents({commit}, {eventsPerPage, currentPage}) {
-        EventService.getEvents(eventsPerPage, currentPage)
+    fetchEvents({commit, dispatch, state}, {currentPage}) {
+        return EventService.getEvents(state.perPage, currentPage)
             .then(response => {
                 console.log('Total events are ' + response.headers['x-total-count'])
                 commit("SET_TOTAL_EVENTS", parseInt(response.headers['x-total-count']))
                 commit("SET_EVENTS", response.data)
             })
             .catch(error => {
-                console.log('There was an error:', error.response)
+                const notification = {
+                    type: 'error',
+                    message: 'There was a problem fetching events: ' + error.message
+                }
+                dispatch('notificationStore/add', notification, {root: true})
             })
     },
-    fetchEvent({commit, getters}, id) {
-        if (getters.getEventByID(id)) {
-            commit('SET_EVENT', getters.getEventByID(id))
+    fetchEvent({commit, getters, dispatch}, id) {
+        let event = getters.getEventByID(id);
+
+        if (event) {
+            commit('SET_EVENT', event)
+            return event
         } else {
-            EventService.getEvent(id)
+            // return the promise so we can use it inside router hooks
+            return EventService.getEvent(id)
                 .then(response => {
                     commit('SET_EVENT', response.data)
+                    return response.data
                 })
                 .catch(error => {
-                    console.log('Error fetching event:', error.response)
+                    const notification = {
+                        type: 'error',
+                        message: 'There was a problem fetching event: ' + error.message
+                    }
+                    dispatch('notificationStore/add', notification, {root: true})
                 })
         }
     }

@@ -185,6 +185,51 @@
       "date": "",
       "time": "",
       "attendees": []
+    },
+    {
+      "id": 480461,
+      "user": {
+        "id": "abs123",
+        "name": "Vlad B."
+      },
+      "category": "nature",
+      "organizer": "Vlad B.",
+      "title": "TEST",
+      "description": "",
+      "location": "",
+      "date": "",
+      "time": "",
+      "attendees": []
+    },
+    {
+      "id": 249341,
+      "user": {
+        "id": "abs123",
+        "name": "Vlad B."
+      },
+      "category": "sustainability",
+      "organizer": "Vlad B.",
+      "title": "SUCCESS",
+      "description": "",
+      "location": "",
+      "date": "",
+      "time": "",
+      "attendees": []
+    },
+    {
+      "id": 912512,
+      "user": {
+        "id": "abs123",
+        "name": "Vlad B."
+      },
+      "category": "animal welfare",
+      "organizer": "Vlad B.",
+      "title": "123",
+      "description": "",
+      "location": "",
+      "date": "",
+      "time": "",
+      "attendees": []
     }
   ]
 }

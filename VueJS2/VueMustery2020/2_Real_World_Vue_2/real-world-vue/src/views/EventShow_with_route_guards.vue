@@ -32,14 +32,26 @@
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex'
+import NProgress from 'nprogress'
+import store from '@/store/store'
 
 export default {
-  props: {
-    event: {
-      type: Object,
-      required: true
-    }
-  }
+  props: ['id'],
+
+  /*** Example of using in component guards used to apply a progress bar ***/
+  beforeRouteEnter(routeTo, routeFrom, next) {
+    NProgress.start()
+    store.dispatch('eventStore/fetchEvent', routeTo.params.id)
+        // then is called on the Promise so we retutn the promise from axios call
+    .then(() => {
+      NProgress.done()
+      next()
+    })
+  },
+  computed: mapState({
+    event: state => state.eventStore.event
+  }),
 }
 </script>
 

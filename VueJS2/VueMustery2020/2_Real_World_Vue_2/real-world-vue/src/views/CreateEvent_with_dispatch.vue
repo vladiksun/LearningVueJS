@@ -47,7 +47,6 @@
 <script>
 import { mapState, mapGetters } from 'vuex'
 import Datepicker from 'vuejs-datepicker'
-import NProgress from "nprogress"
 
 export default {
   name: "CreateEvent",
@@ -85,7 +84,6 @@ export default {
       }
     },
     createEvent() {
-      NProgress.start()
       // namespaced call
       this.$store.dispatch('eventStore/createEvent', this.event)
           .then(() => {
@@ -97,9 +95,7 @@ export default {
             this.event = this.createFreshEventObject()
           })
           // eslint-disable-next-line no-unused-vars
-          .catch(error => {
-            NProgress.done()
-          })
+          .catch(error => {})
     }
   },
   computed: {
