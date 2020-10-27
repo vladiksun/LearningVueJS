@@ -66,7 +66,7 @@ export const actions = {
                 dispatch('notificationStore/add', notification, {root: true})
             })
     },
-    fetchEvent({commit, getters, dispatch}, id) {
+    fetchEvent({commit, getters}, id) {
         let event = getters.getEventByID(id);
 
         if (event) {
@@ -78,13 +78,6 @@ export const actions = {
                 .then(response => {
                     commit('SET_EVENT', response.data)
                     return response.data
-                })
-                .catch(error => {
-                    const notification = {
-                        type: 'error',
-                        message: 'There was a problem fetching event: ' + error.message
-                    }
-                    dispatch('notificationStore/add', notification, {root: true})
                 })
         }
     }

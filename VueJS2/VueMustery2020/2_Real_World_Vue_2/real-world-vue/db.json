@@ -230,6 +230,21 @@
       "date": "",
       "time": "",
       "attendees": []
+    },
+    {
+      "id": 410210,
+      "user": {
+        "id": "abs123",
+        "name": "Vlad B."
+      },
+      "category": "animal welfare",
+      "organizer": "Vlad B.",
+      "title": "TEST_SUB",
+      "description": "",
+      "location": "",
+      "date": "",
+      "time": "",
+      "attendees": []
     }
   ]
 }

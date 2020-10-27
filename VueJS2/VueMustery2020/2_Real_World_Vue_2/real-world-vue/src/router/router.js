@@ -2,9 +2,12 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import CreateEvent from "../views/CreateEvent.vue";
 import EventList from "../views/EventList.vue";
-// import EventShow from "../views/EventShow.vue";
 import NProgress from "nprogress"
 import store from '@/store/store'
+import NotFound from "@/views/NotFound";
+import NetworkIssue from "@/views/NetworkIssue";
+import Example from "@/views/Example";
+// import EventShow from "../views/EventShow.vue";
 
 Vue.use(VueRouter);
 
@@ -29,6 +32,12 @@ const routes = [
       store.dispatch('eventStore/fetchEvent', routeTo.params.id).then(event => {
         routeTo.params.event = event
         next()
+      }).catch(error => {
+        if (error.response && error.response.status === 404) {
+          next({ name: '404', params: { resource: 'event' } })
+        } else {
+          next({ name: 'network-issue' })
+        }
       })
     }
   },
@@ -37,6 +46,26 @@ const routes = [
     name: "event-create",
     component: CreateEvent
   },
+  {
+    path: '/404',
+    name: '404',
+    component: NotFound,
+    props: true
+  },
+  {
+    path: '/network-issue',
+    name: 'network-issue',
+    component: NetworkIssue
+  },
+    // Catch all route. Will catch all navigation that does not match listed above it and redirect it to 404
+  {
+    path: '*',
+    redirect: { name: '404', params: { resource: 'page' } }
+  },
+  {
+    path: '/example',
+    component: Example
+  }
 
   /*** This is a redirecting rule via redirecting  ***/
   // {
