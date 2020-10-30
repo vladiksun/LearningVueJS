@@ -19,6 +19,11 @@ const routes = [
     props: true
   },
   {
+    path: "/event/create",
+    name: "event-create",
+    component: CreateEvent
+  },
+  {
     path: "/event/:id",
     props: true,
     name: "event-show",
@@ -40,11 +45,6 @@ const routes = [
         }
       })
     }
-  },
-  {
-    path: "/event/create",
-    name: "event-create",
-    component: CreateEvent
   },
   {
     path: '/404',

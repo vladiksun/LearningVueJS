@@ -245,6 +245,51 @@
       "date": "",
       "time": "",
       "attendees": []
+    },
+    {
+      "id": 928313,
+      "user": {
+        "id": "abs123",
+        "name": "Vlad B."
+      },
+      "category": "",
+      "organizer": "Vlad B.",
+      "title": "",
+      "description": "",
+      "location": "",
+      "date": null,
+      "time": "",
+      "attendees": []
+    },
+    {
+      "id": 868052,
+      "user": {
+        "id": "abs123",
+        "name": "Vlad B."
+      },
+      "category": "sustainability",
+      "organizer": "Vlad B.",
+      "title": "qwe",
+      "description": "qwe",
+      "location": "qwe",
+      "date": "2020-10-05T11:45:00.000Z",
+      "time": "3:00",
+      "attendees": []
+    },
+    {
+      "id": 678473,
+      "user": {
+        "id": "abs123",
+        "name": "Vlad B."
+      },
+      "category": "nature",
+      "organizer": "Vlad B.",
+      "title": "qweqweqwe",
+      "description": "qweqweqwe",
+      "location": "qweqweqwe",
+      "date": "2020-10-07T12:07:00.000Z",
+      "time": "17:00",
+      "attendees": []
     }
   ]
 }

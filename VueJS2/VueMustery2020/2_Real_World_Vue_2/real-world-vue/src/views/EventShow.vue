@@ -2,7 +2,7 @@
   <div>
     <div class="event-header">
 
-      <span v-if="!event.time">No time specifed</span>
+      <span v-if="!event.time">No time specified</span>
       <span v-else class="eyebrow">@{{ event.time }} on {{ event.date | date }}</span>
 
       <h1 class="title">{{ event.title }}</h1>
